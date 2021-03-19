@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Kalkulator</string>
+    <string name="simple_mode_fragment_label">Simple Mode Fragment</string>
+    <string name="advanced_mode_fragment_label">Advanced Mode Fragment</string>
+    <string name="action_advanced_mode">Tryb zaawansowany</string>
+    <string name="action_simple_mode">Tryb prosty</string>
+    <string name="button_seven">7</string>
+    <string name="button_eight">8</string>
+    <string name="button_nine">9</string>
+    <string name="button_four">4</string>
+    <string name="button_five">5</string>
+    <string name="button_six">6</string>
+    <string name="button_one">1</string>
+    <string name="button_two">2</string>
+    <string name="button_three">3</string>
+    <string name="button_zero">0</string>
+    <string name="button_dot">.</string>
+    <string name="button_equals">=</string>
+    <string name="button_add">+</string>
+    <string name="button_subtract">-</string>
+    <string name="button_multiply">*</string>
+    <string name="button_divide">/</string>
+    <string name="button_sign_change">+/-</string>
+    <string name="button_clear">C</string>
+    <string name="button_clear_all">CE</string>
+    <string name="button_percent">%</string>
+    <string name="button_sin">sin</string>
+    <string name="button_cos">cos</string>
+    <string name="button_tan">tan</string>
+    <string name="button_ln">ln</string>
+    <string name="button_log">log</string>
+    <string name="button_sqrt">sqrt</string>
+    <string name="button_square_root">x^2</string>
+    <string name="button_exponent">x^y</string>
+    <string name="action_exit">Wyjście</string>
+    <string name="action_about">O aplikacji</string>
+</resources>

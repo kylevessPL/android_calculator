@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.advancedmode.AdvancedModeFragment">
+
+    <Button
+        android:id="@+id/button_exponent"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_exponent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_log"
+        app:layout_constraintEnd_toStartOf="@+id/button_tan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_subtract"
+        app:layout_constraintTop_toBottomOf="@+id/button_square_root" />
+
+    <Button
+        android:id="@+id/button_cos"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_cos"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_tan"
+        app:layout_constraintEnd_toStartOf="@+id/button_clear_all"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_square_root"
+        app:layout_constraintTop_toBottomOf="@+id/button_sin" />
+
+    <Button
+        android:id="@+id/button_five"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_five"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_two"
+        app:layout_constraintEnd_toStartOf="@+id/button_six"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_four"
+        app:layout_constraintTop_toBottomOf="@+id/button_eight" />
+
+    <Button
+        android:id="@+id/button_equals"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_equals"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_add"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_dot"
+        app:layout_constraintTop_toBottomOf="@+id/button_three" />
+
+    <Button
+        android:id="@+id/button_log"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_log"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_ln"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_add"
+        app:layout_constraintTop_toBottomOf="@+id/button_exponent" />
+
+    <Button
+        android:id="@+id/button_add"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_add"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_log"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_equals"
+        app:layout_constraintTop_toBottomOf="@+id/button_subtract" />
+
+    <Button
+        android:id="@+id/button_seven"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_seven"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_four"
+        app:layout_constraintEnd_toStartOf="@+id/button_eight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_divide"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_divide"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_multiply"
+        app:layout_constraintEnd_toStartOf="@+id/button_sqrt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_nine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_square_root"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_square_root"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_exponent"
+        app:layout_constraintEnd_toStartOf="@+id/button_cos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_multiply"
+        app:layout_constraintTop_toBottomOf="@+id/button_sqrt" />
+
+    <Button
+        android:id="@+id/button_zero"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_zero"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_dot"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_one" />
+
+    <Button
+        android:id="@+id/button_three"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_three"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_equals"
+        app:layout_constraintEnd_toStartOf="@+id/button_subtract"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_two"
+        app:layout_constraintTop_toBottomOf="@+id/button_six" />
+
+    <Button
+        android:id="@+id/button_one"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_one"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_zero"
+        app:layout_constraintEnd_toStartOf="@+id/button_two"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_four" />
+
+    <Button
+        android:id="@+id/button_ln"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_ln"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_sign_change"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_log"
+        app:layout_constraintTop_toBottomOf="@+id/button_tan" />
+
+    <Button
+        android:id="@+id/button_dot"
+        style="@style/Theme.Kalkulator.Button.NumberFormat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_dot"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_equals"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_zero"
+        app:layout_constraintTop_toBottomOf="@+id/button_two" />
+
+    <Button
+        android:id="@+id/button_two"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_two"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_dot"
+        app:layout_constraintEnd_toStartOf="@+id/button_three"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_one"
+        app:layout_constraintTop_toBottomOf="@+id/button_five" />
+
+    <Button
+        android:id="@+id/button_sin"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_sin"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_cos"
+        app:layout_constraintEnd_toStartOf="@+id/button_clear"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_sqrt"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_eight"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_eight"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_five"
+        app:layout_constraintEnd_toStartOf="@+id/button_nine"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_seven"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_clear_all"
+        style="@style/Theme.Kalkulator.Button.ClearButton"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:text="@string/button_clear_all"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_percent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_cos"
+        app:layout_constraintTop_toBottomOf="@+id/button_clear" />
+
+    <Button
+        android:id="@+id/button_nine"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_nine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_six"
+        app:layout_constraintEnd_toStartOf="@+id/button_divide"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_eight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_tan"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_tan"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_ln"
+        app:layout_constraintEnd_toStartOf="@+id/button_percent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_exponent"
+        app:layout_constraintTop_toBottomOf="@+id/button_cos" />
+
+    <Button
+        android:id="@+id/button_multiply"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_multiply"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_subtract"
+        app:layout_constraintEnd_toStartOf="@+id/button_square_root"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_six"
+        app:layout_constraintTop_toBottomOf="@+id/button_divide" />
+
+    <Button
+        android:id="@+id/button_four"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_four"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_one"
+        app:layout_constraintEnd_toStartOf="@+id/button_five"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_seven" />
+
+    <Button
+        android:id="@+id/button_subtract"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_subtract"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintEnd_toStartOf="@+id/button_exponent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_three"
+        app:layout_constraintTop_toBottomOf="@+id/button_multiply" />
+
+    <Button
+        android:id="@+id/button_clear"
+        style="@style/Theme.Kalkulator.Button.ClearButton"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:text="@string/button_clear"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_clear_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_sin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_sign_change"
+        style="@style/Theme.Kalkulator.Button.NumberFormat"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:text="@string/button_sign_change"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_ln"
+        app:layout_constraintTop_toBottomOf="@+id/button_percent" />
+
+    <Button
+        android:id="@+id/button_sqrt"
+        style="@style/Theme.Kalkulator.Button.MathOperation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_sqrt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_square_root"
+        app:layout_constraintEnd_toStartOf="@+id/button_sin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_divide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_six"
+        style="@style/Theme.Kalkulator.Button.Number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="@string/button_six"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_three"
+        app:layout_constraintEnd_toStartOf="@+id/button_multiply"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_five"
+        app:layout_constraintTop_toBottomOf="@+id/button_nine" />
+
+    <Button
+        android:id="@+id/button_percent"
+        style="@style/Theme.Kalkulator.Button.NumberFormat"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:text="@string/button_percent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_sign_change"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_tan"
+        app:layout_constraintTop_toBottomOf="@+id/button_clear_all" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

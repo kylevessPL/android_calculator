@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SimpleModeFragment">
+
+    <fragment
+        android:id="@+id/SimpleModeFragment"
+        android:name="pl.piasta.kalkulator.ui.simplemode.SimpleModeFragment"
+        android:label="@string/simple_mode_fragment_label"
+        tools:layout="@layout/fragment_simple_mode">
+
+        <action
+            android:id="@+id/action_SimpleModeFragment_to_AdvancedModeFragment"
+            app:destination="@id/AdvancedModeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdvancedModeFragment"
+        android:name="pl.piasta.kalkulator.ui.advancedmode.AdvancedModeFragment"
+        android:label="@string/advanced_mode_fragment_label"
+        tools:layout="@layout/fragment_advanced_mode">
+
+        <action
+            android:id="@+id/action_AdvancedModeFragment_to_SimpleModeFragment"
+            app:destination="@id/SimpleModeFragment" />
+    </fragment>
+</navigation>
