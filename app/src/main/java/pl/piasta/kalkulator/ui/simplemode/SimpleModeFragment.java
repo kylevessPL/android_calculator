@@ -8,18 +8,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import pl.piasta.kalkulator.R;
+import pl.piasta.kalkulator.ui.utils.MathOperation;
 import pl.piasta.kalkulator.ui.utils.SharedViewModel;
 
 public class SimpleModeFragment extends Fragment {
@@ -35,10 +38,12 @@ public class SimpleModeFragment extends Fragment {
         final Button clearButton = root.findViewById(R.id.button_clear);
         final Button clearAllButton = root.findViewById(R.id.button_clear_all);
         final Button switchSignButton = root.findViewById(R.id.button_sign_change);
+        final List<View> touchables = root.getTouchables();
         clearButton.setOnClickListener(e -> model.clear());
         clearAllButton.setOnClickListener(e -> model.clearAll());
         switchSignButton.setOnClickListener(e -> model.switchSign());
-        setNumberButtonsOnClickListener(root.getTouchables());
+        setNumberButtonsOnClickListener(touchables);
+        setMathOperationButtonsOnClickListener(touchables);
         return root;
     }
 
@@ -74,7 +79,24 @@ public class SimpleModeFragment extends Fragment {
                                         .collect(Collectors.toList())
                                         .contains(((Button) e).getText())))
                 .forEach(e -> e.setOnClickListener(button -> {
-                    model.updateInputValue(((Button) button).getText());
+                    model.updateInputValue(((Button) button).getText().toString());
+                }));
+    }
+
+    private void setMathOperationButtonsOnClickListener(List<View> touchables) {
+        touchables
+                .stream()
+                .filter(e -> e instanceof Button &&
+                        Arrays.stream(MathOperation.values())
+                                .map(MathOperation::getValue)
+                                .collect(Collectors.toList())
+                                .contains(((Button) e).getText()))
+                .forEach(e -> e.setOnClickListener(button -> {
+                    String value = ((TextView) requireActivity().findViewById(R.id.input_value))
+                            .getText().toString();
+                    MathOperation operation = MathOperation.findByValue(((Button) button)
+                            .getText().toString());
+                    model.readMathOperation(value, operation);
                 }));
     }
 }

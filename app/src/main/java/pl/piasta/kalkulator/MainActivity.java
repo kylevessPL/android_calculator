@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
         inputValue = findViewById(R.id.input_value);
         scrollView = findViewById(R.id.horizontal_scroll);
         model.getInputValue().observe(this, this::updateInputValue);
-    }
-
-    private void updateInputValue(String value) {
-        inputValue.setText(value);
-        inputValue.post(() -> scrollView.fullScroll(View.FOCUS_RIGHT));
+        model.getToastMessage().observe(this,
+                message -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -54,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateInputValue(String value) {
+        inputValue.setText(value);
+        inputValue.post(() -> scrollView.fullScroll(View.FOCUS_RIGHT));
     }
 
     private void createAboutDialog() {
