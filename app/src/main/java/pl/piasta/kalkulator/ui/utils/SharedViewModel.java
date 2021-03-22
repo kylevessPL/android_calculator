@@ -1,7 +1,5 @@
 package pl.piasta.kalkulator.ui.utils;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,8 +9,6 @@ import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static android.content.ContentValues.TAG;
 
 public class SharedViewModel extends ViewModel {
 
@@ -76,27 +72,23 @@ public class SharedViewModel extends ViewModel {
 
     public void readMathOperation(String value, MathOperation operation) {
         executor.execute(() -> {
-            Log.w(TAG, "tu1");
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (!inputValue.isEmpty() && !resultShown) {
-                try {
-                    Log.w(TAG, currentValue.toPlainString());
-                    Log.w(TAG, latestOperation.getValue());
-                    Log.w(TAG, "tu2");
-                    calculate(value, latestOperation);
-                    Log.w(TAG, currentValue.toPlainString());
-                    mInputValue.postValue(currentValue.toPlainString());
-                } catch (DivisionByZeroException ex) {
-                    mToastMessage.postValue(ex.getMessage());
-                    return;
-                } catch (Exception ex) {
-                    mInputValue.postValue(ERROR_MESSAGE);
-                    return;
+            if (!inputValue.isEmpty()) {
+                if (!resultShown) {
+                    try {
+                        calculate(value, latestOperation);
+                        mInputValue.postValue(currentValue.toPlainString());
+                    } catch (DivisionByZeroException ex) {
+                        mToastMessage.postValue(ex.getMessage());
+                        return;
+                    } catch (Exception ex) {
+                        mInputValue.postValue(ERROR_MESSAGE);
+                        return;
+                    }
                 }
-            }
-            if (!operation.equals(MathOperation.SHOW_RESULT)) {
-                Log.w(TAG, "tu3");
-                latestOperation = operation;
+                if (!operation.equals(MathOperation.SHOW_RESULT)) {
+                    latestOperation = operation;
+                }
             }
             resultShown = true;
             isUpdatable = true;
