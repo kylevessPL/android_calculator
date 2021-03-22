@@ -43,8 +43,12 @@ public class SharedViewModel extends ViewModel {
 
     public void updateInputValue(String value) {
         executor.execute(() -> {
+            if (!isUpdatable) {
+                return;
+            }
+            wasCleared = false;
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (inputValue.equals(ERROR_MESSAGE) || latestOperation.equals(MathOperation.SHOW_RESULT)) {
+            if ((inputValue.equals(ERROR_MESSAGE) || latestOperation.equals(MathOperation.SHOW_RESULT))) {
                 resetAllCalculations();
                 inputValue = "";
             } else if (resultShown) {
@@ -52,7 +56,7 @@ public class SharedViewModel extends ViewModel {
                 wasCleared = false;
                 inputValue = "";
             } else if ((value.equals("0") && inputValue.equals("0")) ||
-                    (value.equals("0") && inputValue.equals("0.")) || !isUpdatable
+                    (value.equals("0") && inputValue.equals("0."))
             ) {
                 return;
             }
