@@ -44,7 +44,7 @@ public class SharedViewModel extends ViewModel {
     public void updateInputValue(String value) {
         executor.execute(() -> {
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (inputValue.equals(ERROR_MESSAGE)) {
+            if (inputValue.equals(ERROR_MESSAGE) || latestOperation.equals(MathOperation.SHOW_RESULT)) {
                 resetAllCalculations();
                 inputValue = "";
             } else if (resultShown) {
@@ -73,23 +73,20 @@ public class SharedViewModel extends ViewModel {
     public void readMathOperation(String value, MathOperation operation) {
         executor.execute(() -> {
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (!inputValue.isEmpty()) {
-                if (!resultShown) {
-                    try {
+            if (!inputValue.isEmpty() && !resultShown) {
+                try {
+                    if (!latestOperation.equals(MathOperation.SHOW_RESULT)) {
                         calculate(value, latestOperation);
-                        mInputValue.postValue(currentValue.toPlainString());
-                    } catch (DivisionByZeroException ex) {
-                        mToastMessage.postValue(ex.getMessage());
-                        return;
-                    } catch (Exception ex) {
-                        mInputValue.postValue(ERROR_MESSAGE);
-                        return;
                     }
-                }
-                if (!operation.equals(MathOperation.SHOW_RESULT)) {
-                    latestOperation = operation;
+                    mInputValue.postValue(currentValue.toPlainString());
+                } catch (DivisionByZeroException ex) {
+                    mToastMessage.postValue(ex.getMessage());
+                    return;
+                } catch (Exception ex) {
+                    mInputValue.postValue(ERROR_MESSAGE);
                 }
             }
+            latestOperation = operation;
             resultShown = true;
             isUpdatable = true;
         });
@@ -144,16 +141,17 @@ public class SharedViewModel extends ViewModel {
             resetAllCalculations();
             return;
         }
-        mInputValue.postValue("");
         wasCleared = true;
         isUpdatable = true;
+        mInputValue.postValue("");
     }
 
     private void resetAllCalculations() {
         currentValue = BigDecimal.ZERO;
         latestOperation = MathOperation.ADD;
-        mInputValue.postValue("");
         wasCleared = false;
         isUpdatable = true;
+        resultShown = true;
+        mInputValue.postValue("");
     }
 }
