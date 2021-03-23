@@ -234,7 +234,7 @@
         android:layout_height="50dp"
         android:text="@string/button_clear_all"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_percent"
+        app:layout_constraintBottom_toTopOf="@+id/button_percentage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_cos"
@@ -261,7 +261,7 @@
         android:text="@string/button_tan"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button_ln"
-        app:layout_constraintEnd_toStartOf="@+id/button_percent"
+        app:layout_constraintEnd_toStartOf="@+id/button_percentage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_exponent"
         app:layout_constraintTop_toBottomOf="@+id/button_cos" />
@@ -329,7 +329,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_ln"
-        app:layout_constraintTop_toBottomOf="@+id/button_percent" />
+        app:layout_constraintTop_toBottomOf="@+id/button_percentage" />
 
     <Button
         android:id="@+id/button_sqrt"
@@ -358,11 +358,11 @@
         app:layout_constraintTop_toBottomOf="@+id/button_nine" />
 
     <Button
-        android:id="@+id/button_percent"
+        android:id="@+id/button_percentage"
         style="@style/Theme.Kalkulator.Button.NumberFormat"
         android:layout_width="143dp"
         android:layout_height="50dp"
-        android:text="@string/button_percent"
+        android:text="@string/button_percentage"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button_sign_change"
         app:layout_constraintEnd_toEndOf="parent"

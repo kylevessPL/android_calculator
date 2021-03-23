@@ -23,7 +23,7 @@
     <string name="button_sign_change">+/-</string>
     <string name="button_clear">C</string>
     <string name="button_clear_all">CE</string>
-    <string name="button_percent">%</string>
+    <string name="button_percentage">%</string>
     <string name="button_sin">sin</string>
     <string name="button_cos">cos</string>
     <string name="button_tan">tan</string>

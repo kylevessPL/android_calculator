@@ -3,7 +3,7 @@ package pl.piasta.kalkulator.ui.utils;
 public class DivisionByZeroException extends RuntimeException {
 
     public DivisionByZeroException() {
-        super("Division by zero is not allowed");
+        super("Nie można dzielić przez zero");
     }
 
     public DivisionByZeroException(String message) {

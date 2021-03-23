@@ -15,15 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import pl.piasta.kalkulator.R;
+import pl.piasta.kalkulator.ui.SharedViewModel;
+import pl.piasta.kalkulator.ui.utils.FragmentUtils;
 import pl.piasta.kalkulator.ui.utils.MathOperation;
-import pl.piasta.kalkulator.ui.utils.SharedViewModel;
 
 public class SimpleModeFragment extends Fragment {
 
@@ -70,27 +67,14 @@ public class SimpleModeFragment extends Fragment {
     }
 
     private void setNumberButtonsOnClickListener(List<View> touchables) {
-        touchables
-                .stream()
-                .filter(e -> e instanceof Button &&
-                        (((Button) e).getText().equals(".") ||
-                                IntStream.rangeClosed(0, 9)
-                                        .mapToObj(Objects::toString)
-                                        .collect(Collectors.toList())
-                                        .contains(((Button) e).getText())))
+        FragmentUtils.getNumberButtons(touchables)
                 .forEach(e -> e.setOnClickListener(button -> {
                     model.updateInputValue(((Button) button).getText().toString());
                 }));
     }
 
     private void setMathOperationButtonsOnClickListener(List<View> touchables) {
-        touchables
-                .stream()
-                .filter(e -> e instanceof Button &&
-                        Arrays.stream(MathOperation.values())
-                                .map(MathOperation::getValue)
-                                .collect(Collectors.toList())
-                                .contains(((Button) e).getText()))
+        FragmentUtils.getMathOperationButtons(touchables)
                 .forEach(e -> e.setOnClickListener(button -> {
                     String value = ((TextView) requireActivity().findViewById(R.id.input_value))
                             .getText().toString();

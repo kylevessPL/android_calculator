@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import pl.piasta.kalkulator.ui.utils.SharedViewModel;
+import pl.piasta.kalkulator.ui.SharedViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

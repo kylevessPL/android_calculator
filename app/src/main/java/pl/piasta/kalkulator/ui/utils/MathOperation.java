@@ -8,6 +8,7 @@ public enum MathOperation {
     SUBTRACT("-"),
     MULTIPLY("*"),
     DIVIDE("/"),
+    EXPONENT("x^y"),
     SHOW_RESULT("=");
 
     private final String value;
