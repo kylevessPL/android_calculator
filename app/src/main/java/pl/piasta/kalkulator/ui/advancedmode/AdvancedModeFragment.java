@@ -20,6 +20,7 @@ import java.util.List;
 import pl.piasta.kalkulator.R;
 import pl.piasta.kalkulator.ui.SharedViewModel;
 import pl.piasta.kalkulator.ui.utils.FragmentUtils;
+import pl.piasta.kalkulator.ui.utils.MathFormat;
 import pl.piasta.kalkulator.ui.utils.MathOperation;
 
 public class AdvancedModeFragment extends Fragment {
@@ -40,9 +41,9 @@ public class AdvancedModeFragment extends Fragment {
         clearButton.setOnClickListener(e -> model.clear());
         clearAllButton.setOnClickListener(e -> model.clearAll());
         switchSignButton.setOnClickListener(e -> model.switchSign());
-        percentageButton.setOnClickListener(e -> model.convertToPercentage());
         setNumberButtonsOnClickListener(touchables);
         setMathOperationButtonsOnClickListener(touchables);
+        setConvertToFormatButtonsOnClickListener(touchables);
         return root;
     }
 
@@ -83,6 +84,15 @@ public class AdvancedModeFragment extends Fragment {
                     MathOperation operation = MathOperation.findByValue(((Button) button)
                             .getText().toString());
                     model.readMathOperation(value, operation);
+                }));
+    }
+
+    private void setConvertToFormatButtonsOnClickListener(List<View> touchables) {
+        FragmentUtils.getConvertToFormatButtons(touchables)
+                .forEach(e -> e.setOnClickListener(button -> {
+                    MathFormat operation = MathFormat.findByValue(((Button) button)
+                            .getText().toString());
+                    model.convertToFormat(operation);
                 }));
     }
 }

@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import pl.piasta.kalkulator.ui.utils.DivisionByZeroException;
+import pl.piasta.kalkulator.ui.utils.MathFormat;
 import pl.piasta.kalkulator.ui.utils.MathOperation;
 import pl.piasta.kalkulator.ui.utils.MaxValueException;
 import pl.piasta.kalkulator.ui.utils.SingleLiveEvent;
@@ -39,7 +40,7 @@ public class SharedViewModel extends ViewModel {
         mToastMessage = new SingleLiveEvent<>();
         mInputValue = new MutableLiveData<>("");
         currentValue = 0;
-        latestOperation = MathOperation.ADD;
+        latestOperation = MathOperation.ADDITION;
         isUpdatable = true;
         resultShown = true;
     }
@@ -70,12 +71,10 @@ public class SharedViewModel extends ViewModel {
             if ((inputValue.equals(ERROR_MESSAGE) || latestOperation.equals(MathOperation.SHOW_RESULT))) {
                 resetAllCalculations();
                 inputValue = "";
-            } else if (resultShown) {
+            } else if (resultShown || inputValue.equals("0")) {
                 resetCurrentCalculations();
                 wasCleared = false;
                 inputValue = "";
-            } else if (value.equals("0") && inputValue.equals("0")) {
-                return;
             }
             if (value.equals(".")) {
                 if (inputValue.isEmpty()) {
@@ -113,6 +112,7 @@ public class SharedViewModel extends ViewModel {
                         return;
                     } catch (Exception ex) {
                         mInputValue.postValue(ERROR_MESSAGE);
+
                     }
                 }
                 latestOperation = operation;
@@ -125,7 +125,8 @@ public class SharedViewModel extends ViewModel {
     public void switchSign() {
         executor.execute(() -> {
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (inputValue.isEmpty() || inputValue.equals("0") || inputValue.equals("0.")) {
+            if (inputValue.isEmpty() || inputValue.equals(ERROR_MESSAGE) ||
+                    inputValue.equals("0") || inputValue.equals("0.")) {
                 return;
             } else if (inputValue.lastIndexOf(".") == inputValue.length() - 1) {
                 inputValue = inputValue.substring(0, inputValue.length() - 1);
@@ -143,43 +144,82 @@ public class SharedViewModel extends ViewModel {
         });
     }
 
-    public void convertToPercentage() {
+    public void convertToFormat(MathFormat format) {
         executor.execute(() -> {
             String inputValue = Objects.requireNonNull(mInputValue.getValue());
-            if (inputValue.isEmpty() || inputValue.equals("0") || inputValue.equals("0.")) {
+            if (inputValue.isEmpty()) {
                 return;
             } else if (inputValue.lastIndexOf(".") == inputValue.length() - 1) {
                 inputValue = inputValue.substring(0, inputValue.length() - 1);
             }
-            double value = Double.parseDouble(inputValue) / 100;
-            mInputValue.postValue(decimalFormat.format(value));
-            isUpdatable = false;
-            if (resultShown) {
-                currentValue = value;
+            double value = getValueInFormat(inputValue, format);
+            try {
+                validateResult(value);
+                mInputValue.postValue(decimalFormat.format(value));
+                if (resultShown) {
+                    currentValue = value;
+                }
+            } catch (ArithmeticException ex) {
+                mInputValue.postValue(ERROR_MESSAGE);
             }
+            isUpdatable = false;
         });
     }
 
     private void calculate(String value, MathOperation operation) {
         double newValue = Double.parseDouble(value);
         switch (operation) {
-            case ADD:
+            case ADDITION:
                 currentValue += newValue;
                 break;
-            case SUBTRACT:
+            case SUBTRACTION:
                 currentValue -= newValue;
                 break;
-            case MULTIPLY:
+            case MULTIPLICATION:
                 currentValue *= newValue;
                 break;
-            case DIVIDE:
+            case DIVISION:
                 if (newValue == 0) {
                     throw new DivisionByZeroException();
                 }
                 currentValue /= newValue;
                 break;
+            case EXPONENT:
+                currentValue = Math.pow(currentValue, newValue);
+                break;
         }
         validateResult(currentValue);
+    }
+
+    private double getValueInFormat(String inputValue, MathFormat format) {
+        double value = Double.parseDouble(inputValue);
+        switch (format) {
+            case PERCENTAGE:
+                value /= 100;
+                break;
+            case SQUARE_ROOT:
+                value = Math.pow(value, 2);
+                break;
+            case SQRT:
+                value = Math.sqrt(value);
+                break;
+            case LN:
+                value = Math.log(value);
+                break;
+            case LOG:
+                value = Math.log10(value);
+                break;
+            case SIN:
+                value = Math.sin(value);
+                break;
+            case COS:
+                value = Math.cos(value);
+                break;
+            case TAN:
+                value = Math.tan(value);
+                break;
+        }
+        return value;
     }
 
     private void resetCurrentCalculations() {
@@ -194,7 +234,7 @@ public class SharedViewModel extends ViewModel {
 
     private void resetAllCalculations() {
         currentValue = 0;
-        latestOperation = MathOperation.ADD;
+        latestOperation = MathOperation.ADDITION;
         wasCleared = false;
         isUpdatable = true;
         resultShown = true;
@@ -202,10 +242,10 @@ public class SharedViewModel extends ViewModel {
     }
 
     private void validateResult(double result) {
-        if (result == Double.POSITIVE_INFINITY) {
-            throw new ArithmeticException("Double overflow resulting in POSITIVE_INFINITY");
-        } else if (result == Double.NEGATIVE_INFINITY) {
-            throw new ArithmeticException("Double overflow resulting in NEGATIVE_INFINITY");
+        if (Double.isInfinite(result)) {
+            throw new ArithmeticException("Double overflow resulting in INFINITY");
+        } else if (Double.isNaN(result)) {
+            throw new ArithmeticException("Double overflow resulting in NaN");
         }
     }
 

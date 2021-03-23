@@ -33,4 +33,15 @@ public final class FragmentUtils {
                                 .contains(((Button) e).getText()))
                 .collect(Collectors.toList());
     }
+
+    public static List<View> getConvertToFormatButtons(List<View> touchables) {
+        return touchables
+                .stream()
+                .filter(e -> e instanceof Button &&
+                        Arrays.stream(MathFormat.values())
+                                .map(MathFormat::getValue)
+                                .collect(Collectors.toList())
+                                .contains(((Button) e).getText()))
+                .collect(Collectors.toList());
+    }
 }
