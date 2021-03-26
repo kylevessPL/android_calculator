@@ -108,11 +108,11 @@ public class SharedViewModel extends ViewModel {
                         }
                         mInputValue.postValue(decimalFormat.format(currentValue));
                     } catch (DivisionByZeroException ex) {
+                        latestOperation = MathOperation.SHOW_RESULT;
                         mToastMessage.postValue(ex.getMessage());
                         return;
                     } catch (Exception ex) {
                         mInputValue.postValue(ERROR_MESSAGE);
-
                     }
                 }
                 latestOperation = operation;
